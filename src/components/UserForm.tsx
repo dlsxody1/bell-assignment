@@ -1,16 +1,16 @@
-import UserIdInput from "./Input/UserIdInput";
-import UserPasswordInput from "./Input/UserPasswordInput";
+// import UserIdInput from "./Input/UserIdInput";
+// import UserPasswordInput from "./Input/UserPasswordInput";
 import { selectUsers } from "../reducer/userReducer";
 import { useSelector } from "react-redux";
+import UserInput from "./UserInput";
 
 const UserForm = () => {
   const users = useSelector(selectUsers);
-
   return (
-    users &&
-    users.map(({ uuid }, index) => {
+    users.length > 0 &&
+    users.map((user, index) => {
       return (
-        <div key={uuid}>
+        <div key={user.uuid}>
           <div className="w-[415px] h-[175px] border border-black p-3 mt-3 mb-3 ">
             <div className="flex justify-between">
               <h1 className="font-bold">User - {index}</h1>
@@ -20,9 +20,9 @@ const UserForm = () => {
             </div>
             <div className="flex flex-col">
               <label className="text-left">Name</label>
-              <UserIdInput />
+              <UserInput type="text" initialValue={user} />
               <label className="text-left">Password</label>
-              <UserPasswordInput />
+              <UserInput type="password" initialValue={user} />
             </div>
           </div>
         </div>
