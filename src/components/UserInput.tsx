@@ -3,6 +3,7 @@ import { IUserProps } from "../types/UserTypes";
 import useInput from "../hook/useInput";
 import { selectUsers, updateUser } from "../reducer/userReducer";
 import { useEffect, useState } from "react";
+import conditionCheck from "../util/conditionCheck";
 
 const UserInput = ({
   initialValue,
@@ -15,19 +16,10 @@ const UserInput = ({
   const { handleInputChange, inputValue } = useInput(initialValue);
   const users = useSelector(selectUsers);
   const dispatch = useDispatch();
-  const hasDuplicateId = (userArray: IUserProps[]): boolean => {
-    const idSet = new Set<string>();
-    for (const user of userArray) {
-      if (idSet.has(user.id)) {
-        return true;
-      }
-      idSet.add(user.id);
-    }
-    return false;
-  };
+  const { hasDuplicateId } = conditionCheck(users);
 
   useEffect(() => {
-    setIsDuplicate(hasDuplicateId(users));
+    setIsDuplicate(hasDuplicateId());
   }, [inputValue.id, users]);
 
   return (
@@ -40,33 +32,30 @@ const UserInput = ({
             : dispatch(
                 updateUser({ ...initialValue, password: e.target.value })
               );
-          console.log(users);
         }}
         className={`w-[388px] h-[36px] border focus:outline-none  ${
           type === "text"
             ? inputValue.id.length <= 3 && inputValue.id.length !== 0
               ? "border-red-500 bg-red-200"
               : ""
-            : inputValue.password.length <= 6 &&
+            : inputValue.password.length <= 5 &&
               inputValue.password.length !== 0
             ? "border-red-500 bg-red-200"
             : ""
         }`}
         type={type}
-        name={type}
+        name={type === "text" ? "id" : "password"}
       />
       {type === "text" && isDuplicate ? (
         <label className="flex text-red-600 text-[10px]">
           ID가 중복되었습니다
         </label>
-      ) : type === "text" &&
-        inputValue.id.length <= 3 &&
-        inputValue.id.length !== 0 ? (
+      ) : inputValue.id.length <= 3 && inputValue.id.length !== 0 ? (
         <label className="flex text-red-600">
           이름을 3글자 이상 입력해주세요
         </label>
       ) : type === "password" &&
-        inputValue.password.length <= 6 &&
+        inputValue.password.length <= 5 &&
         inputValue.password.length !== 0 ? (
         <label className="flex text-red-600 text-[10px]">
           비밀번호는 6글자 이상이어야 합니다!
