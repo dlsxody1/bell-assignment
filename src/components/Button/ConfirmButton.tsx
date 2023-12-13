@@ -1,10 +1,12 @@
-import { useSelector } from "react-redux";
-import { selectUsers } from "../../reducer/userReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { resetUser, selectUsers } from "../../reducer/userReducer";
 import { useEffect, useState } from "react";
 import conditionCheck from "../../util/conditionCheck";
+import { showResult } from "../../reducer/userReducer";
 
 const ConfirmButton = () => {
   const [isConfirm, setIsConfirm] = useState(false);
+  const dispatch = useDispatch();
   const users = useSelector(selectUsers);
 
   useEffect(() => {
@@ -14,6 +16,11 @@ const ConfirmButton = () => {
 
   return (
     <button
+      disabled={!isConfirm}
+      onClick={async () => {
+        dispatch(showResult());
+        dispatch(resetUser());
+      }}
       className={`p-2 flex justify-center items-center text-xs border ${
         isConfirm
           ? "border-black text-black"

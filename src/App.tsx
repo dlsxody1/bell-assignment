@@ -2,6 +2,7 @@ import "./App.css";
 import UserForm from "./components/UserForm";
 import AddUserButton from "./components/Button/AddUserButton";
 import ConfirmButton from "./components/Button/ConfirmButton";
+import UserResult from "./components/UserResult";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <AddUserButton />
           <ConfirmButton />
         </div>
+        <UserResult />
       </div>
     </>
   );
