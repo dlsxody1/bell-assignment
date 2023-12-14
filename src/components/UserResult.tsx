@@ -6,9 +6,7 @@ import { useEffect } from "react";
 const UserResult = () => {
   const result = useSelector(selectResult);
   const userResult = useSelector(selectResultUser);
-  useEffect(() => {
-    console.log(userResult, "결과 렌더링");
-  }, [result]);
+  useEffect(() => {}, [result]);
 
   const { passwordRegex } = regex();
 

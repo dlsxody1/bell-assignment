@@ -13,10 +13,17 @@ const UserInput = ({
   type: "text" | "password";
 }) => {
   const [isDuplicate, setIsDuplicate] = useState(true);
+  const [lengthCheck, setIsLengthCheck] = useState(false);
   const { handleInputChange, inputValue } = useInput(initialValue);
   const users = useSelector(selectUsers);
   const dispatch = useDispatch();
   const { hasDuplicateId } = conditionCheck(users);
+  const focusPasswordLengthCheck = () => {
+    setIsLengthCheck(true);
+  };
+  const blurPasswordLengthCheck = () => {
+    setIsLengthCheck(false);
+  };
 
   useEffect(() => {
     setIsDuplicate(hasDuplicateId());
@@ -33,6 +40,8 @@ const UserInput = ({
                 updateUser({ ...initialValue, password: e.target.value })
               );
         }}
+        onFocus={() => focusPasswordLengthCheck()}
+        onBlur={() => blurPasswordLengthCheck()}
         className={`w-[388px] h-[36px] border focus:outline-none  ${
           type === "text"
             ? inputValue.id.length <= 3 && inputValue.id.length !== 0
@@ -51,11 +60,16 @@ const UserInput = ({
           The name "{inputValue.id}" is duplicated
         </label>
       ) : inputValue.id.length <= 3 && inputValue.id.length !== 0 ? (
-        <label className="flex text-red-600">
+        <label className="flex text-red-600 ">
           Name must be at least 3 character
         </label>
       ) : type === "password" &&
-        inputValue.password.length <= 5 &&
+        lengthCheck &&
+        inputValue.password.length === 0 ? (
+        <label className="flex text-red-600 text-[10px]">
+          Password is required
+        </label>
+      ) : inputValue.password.length <= 5 &&
         inputValue.password.length !== 0 ? (
         <label className="flex text-red-600 text-[10px]">
           Password must be at least 6 character

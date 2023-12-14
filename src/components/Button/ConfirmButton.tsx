@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { remainUser, selectUsers } from "../../reducer/userReducer";
+import { remainUser, resetUser, selectUsers } from "../../reducer/userReducer";
 import { useEffect, useState } from "react";
 import conditionCheck from "../../util/conditionCheck";
 import { showResult } from "../../reducer/userReducer";
@@ -20,6 +20,7 @@ const ConfirmButton = () => {
       onClick={async () => {
         dispatch(showResult());
         dispatch(remainUser());
+        dispatch(resetUser());
       }}
       className={`p-2 flex justify-center items-center text-xs border ${
         isConfirm

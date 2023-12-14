@@ -12,7 +12,9 @@ function App() {
           <AddUserButton />
           <ConfirmButton />
         </div>
-        <UserResult />
+        <div className="mt-5">
+          <UserResult />
+        </div>
       </div>
     </>
   );

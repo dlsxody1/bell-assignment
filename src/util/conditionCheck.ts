@@ -6,7 +6,6 @@ const conditionCheck = (userArray: IUserProps[]) => {
     const userInfoLengthCheck = userArray.every((user) => {
       return user.id.length >= 3 && user.password.length >= 6;
     });
-    console.log(userInfoLengthCheck, "check");
     return userInfoLengthCheck;
   };
 
