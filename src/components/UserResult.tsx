@@ -1,23 +1,25 @@
 import { useSelector } from "react-redux";
 import { regex } from "../util/regex";
 import { selectResult, selectResultUser } from "../reducer/userReducer";
-import { useEffect } from "react";
 
 const UserResult = () => {
   const result = useSelector(selectResult);
   const userResult = useSelector(selectResultUser);
-  useEffect(() => {}, [result]);
-
   const { passwordRegex } = regex();
 
   return result.result
     ? userResult.map((user, i) => {
         return (
-          <div className="bg-[#BFBFBF] flex justify-start w-1/2" key={i}>
-            <div className="font-semibold mr-3">Name : {user?.id}</div>
-            <div className="font-semibold">
+          <div className="bg-[#BFBFBF] flex justify-start mt-3 mb-3" key={i}>
+            <div className="font-semibold mr-3 flex">
+              Name : <div className="font-normal">{user?.id}</div>
+            </div>
+            <div className="font-semibold mr-3 flex">
               Password :
-              {user.password.length > 3 ? passwordRegex(user.password) : ""}
+              <div className="font-normal">
+                {" "}
+                {user.password.length > 3 ? passwordRegex(user.password) : ""}
+              </div>
             </div>
           </div>
         );
