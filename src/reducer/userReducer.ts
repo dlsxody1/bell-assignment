@@ -43,11 +43,7 @@ const userSlice = createSlice({
 
     remainUser(state) {
       state.resultUsers = [...state.users];
-      state.users = state.users.map((user) => ({
-        ...user,
-        id: "",
-        password: "",
-      }));
+      state.users = initialState.users;
     },
   },
 });
@@ -62,7 +58,8 @@ export const userResultSlice = createSlice({
   },
 });
 
-export const { addUser, updateUser, resetUser, deleteUser } = userSlice.actions;
+export const { addUser, updateUser, resetUser, deleteUser, remainUser } =
+  userSlice.actions;
 export const { showResult } = userResultSlice.actions;
 
 export const selectUsers = (state: RootState) => state.user.users;

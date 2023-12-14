@@ -1,4 +1,3 @@
-import "./App.css";
 import UserForm from "./components/UserForm";
 import AddUserButton from "./components/Button/AddUserButton";
 import ConfirmButton from "./components/Button/ConfirmButton";

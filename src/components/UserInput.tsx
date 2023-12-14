@@ -48,17 +48,17 @@ const UserInput = ({
       />
       {type === "text" && isDuplicate ? (
         <label className="flex text-red-600 text-[10px]">
-          ID가 중복되었습니다
+          The name "{inputValue.id}" is duplicated
         </label>
       ) : inputValue.id.length <= 3 && inputValue.id.length !== 0 ? (
         <label className="flex text-red-600">
-          이름을 3글자 이상 입력해주세요
+          Name must be at least 3 character
         </label>
       ) : type === "password" &&
         inputValue.password.length <= 5 &&
         inputValue.password.length !== 0 ? (
         <label className="flex text-red-600 text-[10px]">
-          비밀번호는 6글자 이상이어야 합니다!
+          Password must be at least 6 character
         </label>
       ) : null}
     </div>

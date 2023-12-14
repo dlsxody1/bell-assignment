@@ -6,8 +6,7 @@ const DeleteButton = ({ uuid }: { uuid: string }) => {
   return (
     <button
       onClick={() => {
-        dispatch(deleteUser(uuid));
-        console.log(uuid);
+        dispatch(deleteUser({ uuid }));
       }}
       className="w-[17px] h-[17px] font-semibold border border-black flex justify-center items-center p-2"
     >
