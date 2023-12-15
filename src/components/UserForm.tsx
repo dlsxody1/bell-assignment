@@ -1,5 +1,3 @@
-// import UserIdInput from "./Input/UserIdInput";
-// import UserPasswordInput from "./Input/UserPasswordInput";
 import { selectUsers } from "../reducer/userReducer";
 import { useSelector } from "react-redux";
 import UserInput from "./UserInput";
