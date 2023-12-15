@@ -12,7 +12,7 @@ const ConfirmButton = () => {
   useEffect(() => {
     const { confirmCheck, hasDuplicateId } = conditionCheck(users);
     setIsConfirm(confirmCheck() && !hasDuplicateId());
-  }, [users.map((user) => user.uuid)]);
+  }, [users]);
 
   return (
     <button

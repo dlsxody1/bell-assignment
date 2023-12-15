@@ -60,7 +60,7 @@ const UserInput = ({
           The name "{inputValue.id}" is duplicated
         </label>
       ) : inputValue.id.length <= 3 && inputValue.id.length !== 0 ? (
-        <label className="flex text-red-600 ">
+        <label className="flex text-red-600 text-[10px]">
           Name must be at least 3 character
         </label>
       ) : type === "password" &&

@@ -10,7 +10,7 @@ const UserResult = () => {
   return result.result
     ? userResult.map((user, i) => {
         return (
-          <div className="bg-[#BFBFBF] flex justify-start mt-3 mb-3" key={i}>
+          <div className="flex justify-start mt-3 mb-3" key={i}>
             <div className="font-semibold mr-3 flex">
               Name : <div className="font-normal">{user?.id}</div>
             </div>

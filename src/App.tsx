@@ -12,7 +12,7 @@ function App() {
           <AddUserButton />
           <ConfirmButton />
         </div>
-        <div className="mt-5 w-1/4 h-min ">
+        <div className="mt-5 w-1/4 h-min bg-[#BFBFBF]">
           <UserResult />
         </div>
       </div>
